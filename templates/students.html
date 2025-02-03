@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registered Students</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <button id="toggleDarkMode" class="dark-mode-toggle" style="position: absolute; top: 15px; right: 15px;" title="Modes">
+                <i class="fas fa-moon"></i>
+            </button>
+            <a href="{{ url_for('home') }}"  class="button primary">Back to Home</a>
+        <h1>Registered Students</h1>
+        
+        <table class="attendance-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.id }}</td>
+                    <td>{{ student.name }}</td>
+                    <td>
+                        <form action="{{ url_for('remove_student') }}" method="POST" style="display: inline;">
+                            <input type="hidden" name="id" value="{{ student.id }}">
+                            <button type="submit" class="button danger">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="3">No students registered</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <h2>Remove Student by ID</h2>
+        <form method="POST" action="{{ url_for('remove_student') }}">
+            <div class="form-group">
+                <label for="id">Enter ID to Remove:</label>
+                <input type="text" id="id" name="id" required>
+            </div>
+            <button type="submit" class="button danger">Remove Student</button>
+        </form>
+    </div>
+    <!-- Add this before closing body tag in each template -->
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attendance Records</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <button id="toggleDarkMode" class="dark-mode-toggle" style="position: absolute; top: 15px; right: 15px;" title="Modes">
+            <i class="fas fa-moon"></i>
+        </button>
+        <h1>Attendance Records</h1>
+        <!-- In attendance_file.html and attendance.html -->
+        <a href="{{ url_for('home') }}" class="button primary" style="margin-bottom: 1%;">Back to Home</a>
+        <div class="file-list">
+            {% for file in files %}
+            <a href="{{ url_for('view_attendance_file', filename=file) }}" class="file-item">
+                {{ file }}
+            </a>
+            {% endfor %}
+        </div>
+        
+    </div>
+    <!-- Add this before closing body tag in each template -->
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>
