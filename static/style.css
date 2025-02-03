@@ -1,46 +1,49 @@
+/* ===============================================
+   CSS Variables for Themes and Colors
+=============================================== */
 :root {
     /* Primary Colors */
     --primary: #4CAF50;
     --primary-dark: #45a049;
     --danger: #ff4444;
     --danger-dark: #cc0000;
-    
+  
     /* Light Theme Colors */
     --background-light: #f0f2f5;
     --card-bg-light: #ffffff;
     --text-light: #2c3e50;
     --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.1);
-    
+  
     /* Dark Theme Colors */
     --background-dark: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     --card-bg-dark: rgba(255, 255, 255, 0.05);
     --text-dark: #e6f1ff;
     --shadow-dark: 0 4px 6px rgba(0, 0, 0, 0.7);
-    
+  
     /* Additional Colors */
     --bermuda-blue: #00a8cc;
     --bermuda-green: #00ccaa;
-}
-
-/* Default Light Mode: these are the active variables */
-:root {
+  }
+  
+  /* Default Light Mode: these are the active variables */
+  :root {
     --background: var(--background-light);
     --card-bg: var(--card-bg-light);
     --text: var(--text-light);
     --shadow: var(--shadow-light);
-}
-
-/* Dark Mode: override the active variables */
-body.dark-mode {
+  }
+  
+  /* Dark Mode: override the active variables */
+  body.dark-mode {
     --background: var(--background-dark);
     --card-bg: var(--card-bg-dark);
     --text: var(--text-dark);
     --shadow: var(--shadow-dark);
     background: var(--background);
-}
-
-/* Optional watermark for dark mode */
-body.dark-mode::after {
+  }
+  
+  /* Watermark for Dark Mode */
+  body.dark-mode::after {
     content: "The Bermuda";
     position: fixed;
     bottom: 20px;
@@ -49,25 +52,41 @@ body.dark-mode::after {
     color: rgba(255, 255, 255, 0.1);
     font-weight: bold;
     z-index: -1;
-}
-
-/* Global Reset and Transitions */
-* {
+  }
+  
+  /* Watermark for Light Mode (always show when not in dark mode) */
+  body:not(.dark-mode)::after {
+    content: "The Bermuda";
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 1.2rem;
+    color: rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    z-index: -1;
+  }
+  
+  /* ===============================================
+     Global Reset and Transitions
+  =============================================== */
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     transition: all 0.3s ease;
-}
-
-body {
+  }
+  
+  body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--background);
     color: var(--text);
     line-height: 1.6;
-}
-
-/* Container */
-.container {
+  }
+  
+  /* ===============================================
+     Container
+  =============================================== */
+  .container {
     position: relative; /* For absolute elements like the dark mode toggle */
     max-width: 1200px;
     margin: 2rem auto;
@@ -76,16 +95,18 @@ body {
     border-radius: 15px;
     box-shadow: var(--shadow);
     animation: fadeIn 0.5s ease-out;
-}
-
-/* Fade In Animation */
-@keyframes fadeIn {
+  }
+  
+  /* Fade In Animation */
+  @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
-}
-
-/* Buttons */
-.button {
+  }
+  
+  /* ===============================================
+     Buttons
+  =============================================== */
+  .button {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -95,36 +116,38 @@ body {
     font-weight: 500;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.button:hover {
+  }
+  
+  .button:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow);
-}
-
-.button.primary {
+  }
+  
+  .button.primary {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: white;
-}
-
-.button.danger {
+  }
+  
+  .button.danger {
     background: linear-gradient(135deg, var(--danger), var(--danger-dark));
     color: white;
-}
-
-/* Form Groups */
-.form-group {
+  }
+  
+  /* ===============================================
+     Form Groups
+  =============================================== */
+  .form-group {
     margin-bottom: 1.5rem;
-}
-
-label {
+  }
+  
+  label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 600;
     color: var(--text);
-}
-
-input[type="text"] {
+  }
+  
+  input[type="text"] {
     width: 100%;
     padding: 0.8rem;
     border: 2px solid #e0e0e0;
@@ -132,23 +155,25 @@ input[type="text"] {
     font-size: 1rem;
     background: var(--card-bg);
     color: var(--text);
-}
-
-input[type="text"]:focus {
+  }
+  
+  input[type="text"]:focus {
     border-color: var(--primary);
     outline: none;
     /* Subtle glow effect */
     box-shadow: 0 0 0 3px rgba(102, 187, 106, 0.3);
-}
-
-/* Dark mode input adjustments */
-body.dark-mode input[type="text"] {
+  }
+  
+  /* Dark mode input adjustments */
+  body.dark-mode input[type="text"] {
     border: 2px solid #444;
     background: #2a2a2a;
-}
-
-/* Attendance Table */
-.attendance-table {
+  }
+  
+  /* ===============================================
+     Attendance Table
+  =============================================== */
+  .attendance-table {
     width: 100%;
     border-collapse: collapse;
     margin: 1.5rem 0;
@@ -156,51 +181,53 @@ body.dark-mode input[type="text"] {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: var(--shadow);
-}
-
-/* Enable horizontal scrolling on small devices */
-.attendance-table-wrapper {
+  }
+  
+  /* Enable horizontal scrolling on small devices */
+  .attendance-table-wrapper {
     overflow-x: auto;
-}
-
-.attendance-table th,
-.attendance-table td {
+  }
+  
+  .attendance-table th,
+  .attendance-table td {
     padding: 1rem;
     text-align: left;
-}
-
-.attendance-table th {
+  }
+  
+  .attendance-table th {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: white;
     font-weight: 600;
-}
-
-/* Alternate row colors for light mode */
-.attendance-table tr:nth-child(even) {
+  }
+  
+  /* Alternate row colors for light mode */
+  .attendance-table tr:nth-child(even) {
     background-color: #f8f9fa;
-}
-
-/* Alternate row colors and hover states for dark mode */
-body.dark-mode .attendance-table tr:nth-child(even) {
+  }
+  
+  /* Alternate row colors and hover states for dark mode */
+  body.dark-mode .attendance-table tr:nth-child(even) {
     background-color: #1c1c1c;
-}
-
-.attendance-table tr:hover {
+  }
+  
+  .attendance-table tr:hover {
     background-color: #f1f1f1;
-}
-
-body.dark-mode .attendance-table tr:hover {
+  }
+  
+  body.dark-mode .attendance-table tr:hover {
     background-color: #2a2a2a;
-}
-
-/* File List */
-.file-list {
+  }
+  
+  /* ===============================================
+     File List
+  =============================================== */
+  .file-list {
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-}
-
-.file-item {
+  }
+  
+  .file-item {
     padding: 1.5rem;
     background: var(--card-bg);
     border-radius: 10px;
@@ -210,14 +237,16 @@ body.dark-mode .attendance-table tr:hover {
     align-items: center;
     gap: 1rem;
     box-shadow: var(--shadow);
-}
-
-.file-item:hover {
+  }
+  
+  .file-item:hover {
     transform: translateY(-3px);
-}
-
-/* Loading Overlay */
-.loading {
+  }
+  
+  /* ===============================================
+     Loading Overlay
+  =============================================== */
+  .loading {
     display: none;
     position: fixed;
     top: 0;
@@ -228,24 +257,26 @@ body.dark-mode .attendance-table tr:hover {
     justify-content: center;
     align-items: center;
     z-index: 1000;
-}
-
-.loading-spinner {
+  }
+  
+  .loading-spinner {
     width: 50px;
     height: 50px;
     border: 5px solid #f3f3f3;
     border-top: 5px solid var(--primary);
     border-radius: 50%;
     animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
+  }
+  
+  @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-}
-
-/* Modal */
-.modal {
+  }
+  
+  /* ===============================================
+     Modal
+  =============================================== */
+  .modal {
     display: none;
     position: fixed;
     top: 0;
@@ -256,9 +287,9 @@ body.dark-mode .attendance-table tr:hover {
     justify-content: center;
     align-items: center;
     z-index: 1000;
-}
-
-.modal-content {
+  }
+  
+  .modal-content {
     background: var(--card-bg);
     padding: 2rem;
     border-radius: 10px;
@@ -266,86 +297,89 @@ body.dark-mode .attendance-table tr:hover {
     width: 90%;
     animation: modalIn 0.3s ease-out;
     color: var(--text);
-}
-
-@keyframes modalIn {
+  }
+  
+  @keyframes modalIn {
     from { transform: scale(0.8); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
-}
-
-/* Dark Mode Toggle Button */
-.dark-mode-toggle {
+  }
+  
+  /* ===============================================
+     Dark Mode Toggle Button
+  =============================================== */
+  .dark-mode-toggle {
     background: none;
     border: none;
     cursor: pointer;
     font-size: 1.5rem;
     color: var(--primary);
     transition: color 0.3s ease;
-}
-
-.dark-mode-toggle:hover {
+  }
+  
+  .dark-mode-toggle:hover {
     color: var(--primary-dark);
-}
-
-/* Footer */
-.footer {
+  }
+  
+  /* ===============================================
+     Footer
+  =============================================== */
+  .footer {
     text-align: center;
     margin-top: 2rem;
     padding: 1rem;
     color: var(--text);
     opacity: 0.8;
-}
-
-/* Responsive Adjustments */
-
-/* For devices with max-width 768px (tablets and small laptops) */
-@media (max-width: 768px) {
+  }
+  
+  /* ===============================================
+     Responsive Adjustments
+  =============================================== */
+  /* For devices with max-width 768px (tablets and small laptops) */
+  @media (max-width: 768px) {
     .container {
-        margin: 1rem;
-        padding: 1.5rem;
+      margin: 1rem;
+      padding: 1.5rem;
     }
-    
     .file-list {
-        grid-template-columns: 1fr;
+      grid-template-columns: 1fr;
     }
-    
     /* Reduce font sizes slightly for readability */
     body {
-        font-size: 0.95rem;
+      font-size: 0.95rem;
     }
-    
     .button {
-        padding: 0.6rem 1rem;
-        font-size: 0.9rem;
+      padding: 0.6rem 1rem;
+      font-size: 0.9rem;
     }
-}
-
-/* For devices with max-width 480px (mobile phones) */
-@media (max-width: 480px) {
+  }
+  
+  /* For devices with max-width 480px (mobile phones) */
+  @media (max-width: 480px) {
     .container {
-        margin: 0.5rem;
-        padding: 1rem;
+      margin: 0.5rem;
+      padding: 1rem;
     }
-    
+  
     /* Ensure the dark mode toggle is accessible */
     .dark-mode-toggle {
-        font-size: 1.3rem;
+      font-size: 1.3rem;
     }
-    
+  
     /* Adjust modal for smaller screens */
     .modal-content {
-        padding: 1.5rem;
-        max-width: 90%;
+      padding: 1.5rem;
+      max-width: 90%;
     }
-    
+  
     /* Reduce table cell padding for better fit */
     .attendance-table th,
     .attendance-table td {
-        padding: 0.75rem;
+      padding: 0.75rem;
     }
-    
+  
     /* Slight reduction in overall font size */
     body {
-        font-size: 0.9rem;
+      font-size: 0.9rem;
     }
-}
+  }
+  
